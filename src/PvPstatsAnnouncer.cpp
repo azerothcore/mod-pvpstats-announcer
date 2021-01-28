@@ -37,7 +37,7 @@ public:
             return;
         }
 
-        auto repeatTime = sConfigMgr->GetIntDefault(PVPSTATS_ANNOUNCER_CONF_REPEAT_MINUTES, 40) * MINUTE * IN_MILLISECONDS;
+        auto repeatTime = static_cast<uint32>(sConfigMgr->GetIntDefault(PVPSTATS_ANNOUNCER_CONF_REPEAT_MINUTES, 40) * MINUTE * IN_MILLISECONDS);
         this->time += diff;
 
         if (this->time > repeatTime)
