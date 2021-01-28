@@ -6,6 +6,7 @@
 #include "ScriptMgr.h"
 #include "Config.h"
 #include "Common.h"
+#include "World.h"
 
 
 #define PVPSTATS_ANNOUNCER_CONF_ENABLED "PvPstatsAnnouncer.Enabled"
@@ -18,6 +19,12 @@
 class PvPstatsAnnouncer : public WorldScript {
 private:
     uint32 time = 0;
+
+    void output(std::string str)
+    {
+        sLog->outString(str.c_str());
+    }
+
 public:
 
     PvPstatsAnnouncer() : WorldScript("PvPstatsAnnouncer") { }
@@ -45,7 +52,7 @@ public:
 
             if (result)
             {
-                sLog->outString("%s", sConfigMgr->GetStringDefault(PVPSTATS_ANNOUNCER_CONF_START_TEXT, "").c_str());
+                this->output(sConfigMgr->GetStringDefault(PVPSTATS_ANNOUNCER_CONF_START_TEXT, ""));
 
                 uint8 i = 1;
                 do
@@ -53,12 +60,12 @@ public:
                     Field* fields = result->Fetch();
                     if (fields)
                     {
-                        sLog->outString("%u. %s - %u", i, fields[2].GetCString(), fields[1].GetUInt32());
+                        this->output(acore::StringFormat("%u. %s - %u", i, fields[2].GetCString(), fields[1].GetUInt32()));
                         i++;
                     }
                 } while (result->NextRow());
 
-                sLog->outString("%s", sConfigMgr->GetStringDefault(PVPSTATS_ANNOUNCER_CONF_END_TEXT, "").c_str());
+                this->output(sConfigMgr->GetStringDefault(PVPSTATS_ANNOUNCER_CONF_END_TEXT, ""));
             }
 
             this->time = 0;
