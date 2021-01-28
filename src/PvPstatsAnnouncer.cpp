@@ -22,7 +22,8 @@ private:
 
     void output(std::string str)
     {
-        sLog->outString(str.c_str());
+//        sLog->outString(str.c_str());
+        sWorld->SendGlobalText(str.c_str(), nullptr);
     }
 
 public:
