@@ -61,7 +61,7 @@ public:
                     Field* fields = result->Fetch();
                     if (fields)
                     {
-                        this->output(acore::StringFormat("%u. %s - %u", i, fields[2].GetCString(), fields[1].GetUInt32()));
+                        this->output(Acore::StringFormat("%u. %s - %u", i, fields[2].GetCString(), fields[1].GetUInt32()));
                         i++;
                     }
                 } while (result->NextRow());
