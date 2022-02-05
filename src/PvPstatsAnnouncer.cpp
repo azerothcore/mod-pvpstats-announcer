@@ -42,8 +42,8 @@ public:
             auto bracketId = sConfigMgr->GetOption<uint8>("PvPstatsAnnouncer.BracketId", 1);
 
             auto stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_PVPSTATS_BRACKET_MONTH);
-            stmt->setUInt8(0, bracketId);
-            stmt->setUInt8(1, limit);
+            stmt->SetData(0, bracketId);
+            stmt->SetData(1, limit);
 
             auto result = CharacterDatabase.Query(stmt);
 
