@@ -57,7 +57,7 @@ public:
                     Field* fields = result->Fetch();
                     if (fields)
                     {
-                        OutputGlobal(Acore::StringFormatFmt("{}. {} - {}", i, fields[2].GetString(), fields[1].GetUInt32()));
+                        OutputGlobal(Acore::StringFormatFmt("{}. {} - {}", i, fields[2].Get<std::string_view>(), fields[1].Get<uint32>()));
                         i++;
                     }
                 } while (result->NextRow());
