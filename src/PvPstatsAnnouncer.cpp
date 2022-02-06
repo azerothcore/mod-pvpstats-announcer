@@ -42,8 +42,8 @@ public:
             auto bracketId = sConfigMgr->GetOption<uint8>("PvPstatsAnnouncer.BracketId", 1);
 
             auto stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_PVPSTATS_BRACKET_MONTH);
-            stmt->setUInt8(0, bracketId);
-            stmt->setUInt8(1, limit);
+            stmt->SetData(0, bracketId);
+            stmt->SetData(1, limit);
 
             auto result = CharacterDatabase.Query(stmt);
 
@@ -57,7 +57,7 @@ public:
                     Field* fields = result->Fetch();
                     if (fields)
                     {
-                        OutputGlobal(Acore::StringFormatFmt("{}. {} - {}", i, fields[2].GetString(), fields[1].GetUInt32()));
+                        OutputGlobal(Acore::StringFormatFmt("{}. {} - {}", i, fields[2].Get<std::string_view>(), fields[1].Get<uint32>()));
                         i++;
                     }
                 } while (result->NextRow());
