@@ -74,7 +74,7 @@ private:
 
     void OutputGlobal(std::string const& message)
     {
-        ChatHandler(this).SendGlobalSysMessage(message.c_str());
+        ChatHandler(nullptr).SendGlobalSysMessage(message.c_str());
     }
 };
 
