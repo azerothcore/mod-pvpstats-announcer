@@ -73,7 +73,7 @@ private:
 
     void OutputGlobal(std::string const& message)
     {
-        sWorld->SendGlobalText(message.c_str(), nullptr);
+        ChatHandler(this).SendGlobalSysMessage(message.c_str());
     }
 };
 
