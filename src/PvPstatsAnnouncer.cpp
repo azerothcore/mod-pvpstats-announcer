@@ -18,6 +18,7 @@
 #include "ScriptMgr.h"
 #include "Config.h"
 #include "Common.h"
+#include "Chat.h"
 #include "World.h"
 #include "StringFormat.h"
 
@@ -73,7 +74,7 @@ private:
 
     void OutputGlobal(std::string const& message)
     {
-        sWorld->SendGlobalText(message.c_str(), nullptr);
+        ChatHandler(nullptr).SendGlobalSysMessage(message.c_str());
     }
 };
 
