@@ -25,7 +25,9 @@
 class PvPstatsAnnouncer : public WorldScript
 {
 public:
-    PvPstatsAnnouncer() : WorldScript("PvPstatsAnnouncer") { }
+    PvPstatsAnnouncer() : WorldScript("PvPstatsAnnouncer", {
+        WORLDHOOK_ON_UPDATE
+    }) { }
 
     void OnUpdate(uint32 diff) override
     {
